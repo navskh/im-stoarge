@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "exportedAt": "2026-03-27T05:29:20.773Z",
+  "exportedAt": "2026-04-03T08:49:22.268Z",
   "tables": {
     "projects": [
       {
@@ -8,7 +8,7 @@
         "name": "자비스",
         "description": "JABIS (Jinhak Advanced Business Intelligence System)",
         "created_at": "2026-03-04T09:00:31.960Z",
-        "updated_at": "2026-03-27T02:54:21.307Z",
+        "updated_at": "2026-04-03T08:41:21.683Z",
         "project_path": "/Users/young/Projects/JABIS",
         "ai_context": "jabis 를 분석하는데 있어 \njabis-docs 를 반드시 참조할 것! ",
         "watch_enabled": 0,
@@ -19,18 +19,18 @@
         "name": "아라폼",
         "description": "Araform",
         "created_at": "2026-03-06T01:31:57.057Z",
-        "updated_at": "2026-03-27T04:59:08.173Z",
+        "updated_at": "2026-04-03T06:59:13.340Z",
         "project_path": "/Users/young/ARACODE",
         "ai_context": "",
         "watch_enabled": 0,
-        "agent_type": "gemini"
+        "agent_type": "claude"
       },
       {
         "id": "EskhRq9LdnbugtsU",
         "name": "Yozm IT",
         "description": "요즘 IT 기고",
         "created_at": "2026-03-12T01:27:26.628Z",
-        "updated_at": "2026-03-26T09:19:34.673Z",
+        "updated_at": "2026-04-02T09:50:08.384Z",
         "project_path": "/Users/young/Column",
         "ai_context": "",
         "watch_enabled": 0,
@@ -63,9 +63,9 @@
         "name": "AI TESTER",
         "description": "에테 (ete, e2e tester)",
         "created_at": "2026-03-27T02:53:48.765Z",
-        "updated_at": "2026-03-27T05:21:41.663Z",
-        "project_path": "/Users/young/Projects/ai-e2e-tester",
-        "ai_context": "",
+        "updated_at": "2026-04-03T08:47:25.361Z",
+        "project_path": "/Users/young/Projects/TestModule",
+        "ai_context": "기깔나는 테스트 모듈을 만들 것이다.",
         "watch_enabled": 0,
         "agent_type": "claude"
       }
@@ -74,26 +74,26 @@
       {
         "id": "C--qcEeQv5jaqb0K",
         "project_id": "CtnXwGPFJMO8jpuF",
-        "content": "\n### 자비스 \n일단 지금 당장 해야하는건 \ncluster 를 추가해주실 예정임. \n그러면 그 곳에 \n-jabis-maker 세팅 및 \n- 그 외의 모든 pod들이 올라올 필요가 있음 \n-> 그러면 dns 등록도 해야함. \n-> 당장, claude가 외부망 pod 에서 잘 돌아가는지도 확인할 것 \n\n+ 일단 추가적으로 ip 제한 부터 걸자\n\n\n### jabis-hr 전자결재 <-> 영림원\n- 영림원에서 전자결재 콜백 api 문서를 줘야하고 이를 기다려야 함!\n\n\n\n### 테스트용 계정정보는 다음과 같음\njabistest\njabis!004\n\n\n\n### 회계전표 -> ksystem callback process\n1. ksystem -> 전자결재 \n2. 전자결재 상의 상신을 함. (상신: 정호영, 처리부서1차: gwp, 2차: 재경실)\n3. 상신자(정호영)가 승인 (전자결재에서 이뤄져야 함)\n4. 처리부서로 넘어감 (부서함) (gwp 로 넘어가는지 확인) \n5. 처리부서 구성원이, 기표번호를 긁어서 ksystem 에서 전표를 찾음 (잘되는지 확인)\n6. ksystem 의 \"승인처리\" 라는 버튼을 누름 -> 승인이 됨 + 전표번호가 생김 (이거 잘되는지 확인)\n7. ksystem 의 \"결재상태\" 라는 버튼을 누름 -> 전자결재로 새로고침 되면서, 전표번호가 기입이 됨 (ksystem -> jabis) \n-> 전표번호가 전자결재로 잘 넘어가는지 확인! (이를 위한 api 연동이 필요함)\n8. 전자결재 종이, 처리부서장이 승인을 진행\n\n\n!! 중요 !! 전자결재에서 반려를 하는 경우 \n(jabis -> ksystem)\n위의 6번의 \"승인처리\" 버튼이 아니고, \"취소\" 버튼으로 바뀐다고함. \n그리고, 해당 회계전표는 전표 상신자가 수정을 할 수 있는 상태로 바뀜 \n(회계전표 상신 시 상신자가 수정 불가) \n\n상신자입장 (ksystem 수정에 대하여)\n상신 \n-> 결재중 (수정가능, 처리부서 구성원이 승인처리를 누르기 전까지는 수정가능) \n* 수정의 과정은 상신자가 금액을 바꾸거나... 등으로 수정하고, \"결재상태\" 라는 버튼을 눌러서 전자결재에 반영시킴\n-> 처리부서 구성원이 승인 시 (수정 불가능으로 변경)\n-> 처리부서장의 반려 시 (수정 가능으로 변경)\n\n",
-        "version": 445,
+        "content": "\n\n### 자비스 외부망 클러스터 환경으로 옮기기 \nhttps://argocd-internal.jinhaksa.com 10.2.4.14\nhttps://rancher-dev.jinhaksa.com 10.1.4.120\n일단 지금 당장 해야하는건 \ncluster 를 추가해주실 예정임. \n그러면 그 곳에 \n-jabis-maker 세팅 및 \n- 그 외의 모든 pod들이 올라올 필요가 있음 \n-> 그러면 dns 등록도 해야함. \n-> 당장, claude가 외부망 pod 에서 잘 돌아가는지도 확인할 것 \n\n\n### 크롤링 관련 이슈\n이비즈포유도 추가되어야 함. \nhttps://www.ebiz4u.co.kr/home.do/ 이비즈포유 \n\n\n### jabis-maker 에 수정할 내역들 \n-> 일단 전체 채팅 복사가 가능하면 좋겠다 \n-> 세션 타이틀을 채팅 내역을 기반으로 알아서 바뀌었으면 좋겠고 \n해당 세션 타이틀이 전체 페이지 타이틀이 되었으면 좋겠다 (예를들면 자메::어떤 작업중), \n\n### jabis-hr 전자결재 <-> 영림원\n- 영림원에서 전자결재 콜백 문서 준 거 있는데 이건 확인이 필요함.\n\n\n### 테스트용 계정정보는 다음과 같음\njabistest\njabis!004\n\n\n",
+        "version": 541,
         "created_at": "2026-03-04T09:00:31.960Z",
-        "updated_at": "2026-03-27T02:54:21.307Z"
+        "updated_at": "2026-04-03T08:41:21.683Z"
       },
       {
         "id": "1puqYW1yVEcOXIcu",
         "project_id": "Bv8ljX3l4f2fhILB",
-        "content": "### 문제 발생을 어떻게 잡을 것이냐 \n\n\n\n### 개인정보 처리방침\n개인정보 처리방침 연관해서 찬우피디와 얘기를 해볼 필요가 있음 \n어디서 어디까지를 진행해야하는지 \n이 부분 정리해보자 \n\n\n### 지금 문제 생기는 부분 해결하기\nara-front-next 에서 \"\" 인 상태를 제대로 update를 못함 \nconsole찍어가면서 수정해보면서 확인하기\n\n\n### apm 만들기\n- 아라 퍼블리셔 모듈 만들기 (먼저 ppt 자료 만들기)\n\n청중 : 디자이너 및 이 모듈을 적용했을 때 다른 팀에도 알려줄 내용임.\n내용을 입력한다.\n- apm(아픔) : ara-publishing-module 소개서\n1. 우리의 원래의 작업 프로세스는 어떠했는가 \n기획 -> 디자인 -> 퍼블리싱 -> 개발 \n이 중에 \"퍼블리싱\" 부분을 이제 없애겠다는 것임!!\n2. 작업의 방식을 그대로 가져온다.\n기존 디자이너가 디자인 작업 완료 -> 피그마 결과물이 나옴! \n피그마 결과물을 보고 퍼블리셔가 작업 -> html 결과물이 나옴! \n근데 이제 퍼블리셔 외주를 없애겠다는 회사의 방침\n-> 그래서 이 apm(아픔)을 사용하면,\n마찬가지로 figma 파일을 보고 html을 만들어 줄 것이다. \n3. apm 의 만드는 전략 \n기존 html 과 css 를 바탕으로 html css 구조를 문서화 및 규격화를 진행함\n모듈 내부 전략\n피그마 mcp -> get (컴포넌트 정보 들을 가져옴) -> 규격 바탕으로 분석\n-> html 로 변환 \n4. 플랫폼을 사용한 피드백 \n디자이너가 html 들을 확인하여\n그 곳의 셀렉터 혹은, 화면을 첨부할 수 있게하거나 \n메모를 달 수 있는 기능 \n피드백을 줄 수 있는 기능을 추가하여 다음 작업을 진행할 수 있게 함 \n완료 되면 배포! \n5. 마무리\n개발자는 배포된 퍼블리싱 환경에서 보고 개발 로직에 반영\n끝\n\n",
-        "version": 81,
+        "content": "\n### ara-deco 쪽에, 지금 퍼블리싱 내용을 반영하는 모듈을 넣어보자\n-> 일단은 퍼블리셔가 스타일은 맞춰준다고 하셨기 때문에 \n-> 이 부분을 어떻게 해야할지 고민해볼것\n\n### 문제 발생을 어떻게 잡을 것이냐 \n\n### 개인정보 처리방침\n개인정보 처리방침 연관해서 찬우피디와 얘기를 해볼 필요가 있음 \n어디서 어디까지를 진행해야하는지 \n이 부분 정리해보자 \n\n### 지금 문제 생기는 부분 해결하기\nara-front-next 에서 \"\" 인 상태를 제대로 update를 못함 \nconsole찍어가면서 수정해보면서 확인하기\n\n\n",
+        "version": 97,
         "created_at": "2026-03-06T01:31:57.057Z",
-        "updated_at": "2026-03-23T10:50:32.218Z"
+        "updated_at": "2026-04-03T06:59:13.340Z"
       },
       {
         "id": "omt5gZOACPrHJfO3",
         "project_id": "EskhRq9LdnbugtsU",
-        "content": "",
-        "version": 80,
+        "content": "다음글을 써보자 \n바이브코딩 플랫폼을 만들면서 배우게 된것 - jabis-maker 이야기\n-> 첫번째, 비개발자의 바이브코딩 ",
+        "version": 86,
         "created_at": "2026-03-12T01:27:26.628Z",
-        "updated_at": "2026-03-26T09:19:34.673Z"
+        "updated_at": "2026-04-02T09:50:08.384Z"
       },
       {
         "id": "T54NaTxo4MIPfJ6L",
@@ -122,10 +122,10 @@
       {
         "id": "dPyyfxJBDG7U4KX7",
         "project_id": "3LNdTzVIyBBQU2wb",
-        "content": "### 일단 jabis-monitoring 부터 수정하기 \n- 어떤 프로젝트만 넣을지 확인할 것 \n 1. 새로고침 시 Error 로 전환되지 말고, 알아서 업데이트 할 것! -> 이를 위한 시스템 자체를 설계할 필요가 있음. \n 2. 또한, API TEST 는 Failed 가 너무 많음 이 부분을 어떻게 해결할지 생각해야함. \n\n\n### 에테 자체를 어떻게 수정해야할지 확인할 것! \n",
-        "version": 26,
+        "content": "### 정리하자 \n일단 에테는 Fedora PC 에 배포해서 사용해보는 것으로 할 것!!\n\n\n* 서버용 Fedora PC 정보 :\nAD : SystemSec\nPW : Jinhak!004 \n\n*AI 모델 올라간 리눅스 서버 정보\n10.1.1.80\njhadmin / Jinhak!004\n",
+        "version": 72,
         "created_at": "2026-03-27T02:53:48.765Z",
-        "updated_at": "2026-03-27T05:21:41.663Z"
+        "updated_at": "2026-04-03T08:47:25.361Z"
       }
     ],
     "sub_projects": [
@@ -185,7 +185,7 @@
         "name": "영림원 연동",
         "description": "",
         "folder_path": null,
-        "sort_order": 0,
+        "sort_order": 2,
         "created_at": "2026-03-23T09:37:48.095Z",
         "updated_at": "2026-03-23T09:37:48.095Z"
       },
@@ -195,29 +195,9 @@
         "name": "자비스 인프라 구축",
         "description": "",
         "folder_path": null,
-        "sort_order": 1,
+        "sort_order": 0,
         "created_at": "2026-03-27T01:46:50.124Z",
         "updated_at": "2026-03-27T01:46:50.124Z"
-      },
-      {
-        "id": "MfchMO53ieLt5pkH",
-        "project_id": "CtnXwGPFJMO8jpuF",
-        "name": "테스트 모듈 및 환경 관리",
-        "description": "",
-        "folder_path": null,
-        "sort_order": 2,
-        "created_at": "2026-03-27T01:46:50.143Z",
-        "updated_at": "2026-03-27T01:46:50.143Z"
-      },
-      {
-        "id": "MTLtDoKEwFXZrhtr",
-        "project_id": "3LNdTzVIyBBQU2wb",
-        "name": "jabis-monitoring 개선",
-        "description": "",
-        "folder_path": null,
-        "sort_order": 0,
-        "created_at": "2026-03-27T04:54:02.021Z",
-        "updated_at": "2026-03-27T04:54:02.021Z"
       },
       {
         "id": "v5M9JBXZpr7aiyJT",
@@ -228,6 +208,66 @@
         "sort_order": 1,
         "created_at": "2026-03-27T04:54:02.050Z",
         "updated_at": "2026-03-27T04:54:02.050Z"
+      },
+      {
+        "id": "1Xsj8KL06ln7TF22",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "name": "oss 작업하기",
+        "description": "",
+        "folder_path": null,
+        "sort_order": 5,
+        "created_at": "2026-04-02T01:05:27.840Z",
+        "updated_at": "2026-04-02T01:05:27.840Z"
+      },
+      {
+        "id": "xAcC0WmbHbfTl466",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "name": "영업 프로젝트 크롤링 관련",
+        "description": "",
+        "folder_path": null,
+        "sort_order": 3,
+        "created_at": "2026-04-02T06:36:24.294Z",
+        "updated_at": "2026-04-02T09:13:42.060Z"
+      },
+      {
+        "id": "EI74UctYOPyqmS5L",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "name": "jabis-maker 기능 개선",
+        "description": "",
+        "folder_path": null,
+        "sort_order": 1,
+        "created_at": "2026-04-02T06:36:24.315Z",
+        "updated_at": "2026-04-02T06:36:24.315Z"
+      },
+      {
+        "id": "WZhYsw2i_yXeGK34",
+        "project_id": "3LNdTzVIyBBQU2wb",
+        "name": "일단 먼저 프로젝트 분석 먼저 해보자",
+        "description": "",
+        "folder_path": null,
+        "sort_order": 2,
+        "created_at": "2026-04-02T09:38:36.964Z",
+        "updated_at": "2026-04-02T09:38:36.964Z"
+      },
+      {
+        "id": "XETxSbqQAPpR6USn",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "name": "자비스 온보딩",
+        "description": "",
+        "folder_path": null,
+        "sort_order": 4,
+        "created_at": "2026-04-03T07:34:05.439Z",
+        "updated_at": "2026-04-03T07:34:05.439Z"
+      },
+      {
+        "id": "hIHf2Q5ABvhXzL8W",
+        "project_id": "3LNdTzVIyBBQU2wb",
+        "name": "에테 서버 세팅 새롭게",
+        "description": "",
+        "folder_path": null,
+        "sort_order": 0,
+        "created_at": "2026-04-03T08:48:12.255Z",
+        "updated_at": "2026-04-03T08:48:12.255Z"
       }
     ],
     "tasks": [
@@ -607,21 +647,6 @@
         "tags": "[]"
       },
       {
-        "id": "nZytgfM5tTZ8hGSW",
-        "project_id": "CtnXwGPFJMO8jpuF",
-        "sub_project_id": "liS2sL5BwsLmYv5I",
-        "title": "ksystem 과의 연동",
-        "description": "",
-        "status": "idea",
-        "priority": "medium",
-        "is_today": 0,
-        "sort_order": 0,
-        "created_at": "2026-03-23T09:38:00.988Z",
-        "updated_at": "2026-03-23T09:38:00.988Z",
-        "is_archived": 0,
-        "tags": "[]"
-      },
-      {
         "id": "3KfZ1eEgTC3rhTNq",
         "project_id": "CtnXwGPFJMO8jpuF",
         "sub_project_id": "liS2sL5BwsLmYv5I",
@@ -637,21 +662,6 @@
         "tags": "[]"
       },
       {
-        "id": "MHaZC8O0tXKVW8Ew",
-        "project_id": "CtnXwGPFJMO8jpuF",
-        "sub_project_id": "liS2sL5BwsLmYv5I",
-        "title": "회계전표 ksystem 콜백 프로세스 연동 구현",
-        "description": "ksystem과 전자결재 간의 상신, 승인, 부서함 처리 프로세스를 구현합니다.",
-        "status": "idea",
-        "priority": "high",
-        "is_today": 0,
-        "sort_order": 2,
-        "created_at": "2026-03-27T01:46:50.097Z",
-        "updated_at": "2026-03-27T01:46:50.097Z",
-        "is_archived": 0,
-        "tags": "[]"
-      },
-      {
         "id": "0VmJr2Mcc30OAYuO",
         "project_id": "CtnXwGPFJMO8jpuF",
         "sub_project_id": "liS2sL5BwsLmYv5I",
@@ -662,7 +672,7 @@
         "is_today": 0,
         "sort_order": 3,
         "created_at": "2026-03-27T01:46:50.106Z",
-        "updated_at": "2026-03-27T01:46:50.106Z",
+        "updated_at": "2026-04-02T06:28:30.079Z",
         "is_archived": 0,
         "tags": "[]"
       },
@@ -677,7 +687,7 @@
         "is_today": 0,
         "sort_order": 4,
         "created_at": "2026-03-27T01:46:50.114Z",
-        "updated_at": "2026-03-27T01:46:50.114Z",
+        "updated_at": "2026-04-02T06:28:31.453Z",
         "is_archived": 0,
         "tags": "[]"
       },
@@ -702,12 +712,12 @@
         "sub_project_id": "vl2iw1SXJ7KhjKMN",
         "title": "Cluster 추가 및 jabis-maker 세팅",
         "description": "신규 클러스터를 추가하고 jabis-maker 및 관련 Pod들을 구성합니다.",
-        "status": "idea",
+        "status": "submitted",
         "priority": "high",
         "is_today": 0,
         "sort_order": 0,
         "created_at": "2026-03-27T01:46:50.129Z",
-        "updated_at": "2026-03-27T01:46:50.129Z",
+        "updated_at": "2026-04-02T06:34:26.455Z",
         "is_archived": 0,
         "tags": "[]"
       },
@@ -717,12 +727,12 @@
         "sub_project_id": "vl2iw1SXJ7KhjKMN",
         "title": "네트워크 Pod 구성 및 DNS 등록",
         "description": "모든 Pod의 정상 배포 확인 및 서비스 접속을 위한 DNS 등록을 진행합니다.",
-        "status": "idea",
+        "status": "submitted",
         "priority": "high",
         "is_today": 0,
         "sort_order": 1,
         "created_at": "2026-03-27T01:46:50.132Z",
-        "updated_at": "2026-03-27T01:46:50.132Z",
+        "updated_at": "2026-04-02T06:34:30.405Z",
         "is_archived": 0,
         "tags": "[]"
       },
@@ -732,12 +742,12 @@
         "sub_project_id": "vl2iw1SXJ7KhjKMN",
         "title": "Claude 외부망 Pod 동작 확인",
         "description": "외부망 Pod 환경에서 Claude 모델이 정상적으로 호출되고 동작하는지 확인합니다.",
-        "status": "idea",
+        "status": "submitted",
         "priority": "high",
         "is_today": 0,
         "sort_order": 2,
         "created_at": "2026-03-27T01:46:50.136Z",
-        "updated_at": "2026-03-27T01:46:50.136Z",
+        "updated_at": "2026-04-02T06:34:32.654Z",
         "is_archived": 0,
         "tags": "[]"
       },
@@ -752,8 +762,8 @@
         "is_today": 0,
         "sort_order": 3,
         "created_at": "2026-03-27T01:46:50.139Z",
-        "updated_at": "2026-03-27T01:46:50.139Z",
-        "is_archived": 0,
+        "updated_at": "2026-04-02T06:34:39.372Z",
+        "is_archived": 1,
         "tags": "[]"
       },
       {
@@ -783,21 +793,6 @@
         "sort_order": 1,
         "created_at": "2026-03-27T01:46:50.148Z",
         "updated_at": "2026-03-27T01:46:50.148Z",
-        "is_archived": 0,
-        "tags": "[]"
-      },
-      {
-        "id": "zVUyVT7pYh5DKvZ7",
-        "project_id": "EskhRq9LdnbugtsU",
-        "sub_project_id": "6D4wRPEBgqw9VBuz",
-        "title": "테스트",
-        "description": "",
-        "status": "idea",
-        "priority": "medium",
-        "is_today": 0,
-        "sort_order": 2,
-        "created_at": "2026-03-27T02:48:23.310Z",
-        "updated_at": "2026-03-27T02:48:23.310Z",
         "is_archived": 0,
         "tags": "[]"
       },
@@ -850,14 +845,284 @@
         "id": "7zQ5fMHnmEZAVUqb",
         "project_id": "3LNdTzVIyBBQU2wb",
         "sub_project_id": "v5M9JBXZpr7aiyJT",
-        "title": "에테 수정 필요 사항 현황 파악",
+        "title": "에테 리팩토링",
         "description": "에테의 현재 문제점, 개선 요구사항, 수정 범위를 전반적으로 확인하고 작업 목록 도출",
         "status": "idea",
         "priority": "medium",
         "is_today": 0,
         "sort_order": 0,
         "created_at": "2026-03-27T04:54:02.054Z",
-        "updated_at": "2026-03-27T04:54:02.054Z",
+        "updated_at": "2026-04-03T08:48:34.032Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "mcYudbo_GXWRmTWb",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "liS2sL5BwsLmYv5I",
+        "title": "상신자 수정 상태 전환 로직 구현",
+        "description": "결재 중 수정가능, 처리부서 승인 시 수정불가, 반려 시 수정가능으로 전환. ksystem에서 금액 등 수정 후 '결재상태' 버튼으로 전자결재에 반영하는 동기화 포함",
+        "status": "idea",
+        "priority": "high",
+        "is_today": 0,
+        "sort_order": 6,
+        "created_at": "2026-04-01T09:16:22.640Z",
+        "updated_at": "2026-04-01T09:16:22.640Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "7rz7l0eEJfMm9_CL",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "liS2sL5BwsLmYv5I",
+        "title": "회계전표 처리부서 승인 프로세스 E2E 검증",
+        "description": "처리부서함 전달(gwp) → 기표번호로 ksystem 전표 조회 → 승인처리 버튼(전표번호 생성) → 결재상태 버튼(전표번호 전자결재 기입) 전체 플로우 검증",
+        "status": "idea",
+        "priority": "high",
+        "is_today": 0,
+        "sort_order": 7,
+        "created_at": "2026-04-01T09:16:22.650Z",
+        "updated_at": "2026-04-02T09:00:10.032Z",
+        "is_archived": 1,
+        "tags": "[]"
+      },
+      {
+        "id": "WwGH9UjAa_bS80cL",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "1Xsj8KL06ln7TF22",
+        "title": "jabis-api-gateway 쪽 업데이트하기",
+        "description": "",
+        "status": "done",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 0,
+        "created_at": "2026-04-02T01:05:42.310Z",
+        "updated_at": "2026-04-02T01:37:24.277Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "9GdAgzxYSq0JvcTO",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "1Xsj8KL06ln7TF22",
+        "title": "oss 실제 마이그레이션 작업하기",
+        "description": "",
+        "status": "done",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 1,
+        "created_at": "2026-04-02T01:37:20.641Z",
+        "updated_at": "2026-04-02T07:13:52.224Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "FksXE70rez7Jfy4R",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "xAcC0WmbHbfTl466",
+        "title": "크롤링 대상 사이트 분석 및 방법 조사",
+        "description": "나라장터(g2b.go.kr), 이비즈포유(ebiz4u.co.kr) 크롤링 가능 여부 및 기술적 방법 조사",
+        "status": "done",
+        "priority": "high",
+        "is_today": 0,
+        "sort_order": 0,
+        "created_at": "2026-04-02T06:36:24.300Z",
+        "updated_at": "2026-04-03T04:46:15.821Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "SobVqkURpziLeCrZ",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "xAcC0WmbHbfTl466",
+        "title": "웹 크롤링 스케줄러 설계 및 구현",
+        "description": "웹 기반 크롤링이 가능할 경우 스케줄링으로 자동 수집하는 구조 설계 및 구현",
+        "status": "done",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 1,
+        "created_at": "2026-04-02T06:36:24.305Z",
+        "updated_at": "2026-04-03T08:38:15.221Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "nhHVI3b6OybYuvl_",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "xAcC0WmbHbfTl466",
+        "title": "크롤링 데이터 저장 및 영업 연동",
+        "description": "수집한 입찰/공고 데이터를 저장하고 영업팀에서 활용할 수 있도록 연동",
+        "status": "done",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 2,
+        "created_at": "2026-04-02T06:36:24.309Z",
+        "updated_at": "2026-04-03T08:38:16.704Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "jJeXWml0mFOgR_VT",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "vl2iw1SXJ7KhjKMN",
+        "title": "외부망 클러스터에 전체 Pod 배포",
+        "description": "jabis-maker 포함 모든 Pod을 외부망 클러스터(10.2.4.14)에 배포",
+        "status": "submitted",
+        "priority": "high",
+        "is_today": 0,
+        "sort_order": 4,
+        "created_at": "2026-04-02T06:36:24.312Z",
+        "updated_at": "2026-04-02T08:12:29.895Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "T-Sa26996XGQzC_8",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "EI74UctYOPyqmS5L",
+        "title": "전체 채팅 내역 복사 기능 추가",
+        "description": "세션의 전체 채팅 내역을 한번에 복사할 수 있는 기능 구현",
+        "status": "idea",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 0,
+        "created_at": "2026-04-02T06:36:24.317Z",
+        "updated_at": "2026-04-02T06:36:24.317Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "d8nWT-0eRXzcfkK5",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "EI74UctYOPyqmS5L",
+        "title": "채팅 기반 세션 타이틀 자동 생성",
+        "description": "채팅 내역을 분석하여 세션 타이틀을 자동으로 생성/변경하는 기능",
+        "status": "idea",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 1,
+        "created_at": "2026-04-02T06:36:24.320Z",
+        "updated_at": "2026-04-02T06:36:24.320Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "3Df2igFHI--p0sQl",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "EI74UctYOPyqmS5L",
+        "title": "세션 타이틀을 페이지 타이틀에 반영",
+        "description": "세션 타이틀이 브라우저 탭 타이틀에 표시되도록 구현 (예: 자메::작업내용)",
+        "status": "idea",
+        "priority": "low",
+        "is_today": 0,
+        "sort_order": 2,
+        "created_at": "2026-04-02T06:36:24.322Z",
+        "updated_at": "2026-04-02T06:36:24.322Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "CGvM6COvNLBLATTl",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "liS2sL5BwsLmYv5I",
+        "title": "jabis-hr 전자결재 콜백 API 연동 구현",
+        "description": "영림원 전자결재 콜백 API 문서 수신 후 jabis-hr과 연동 구현",
+        "status": "idea",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 8,
+        "created_at": "2026-04-02T06:36:24.324Z",
+        "updated_at": "2026-04-02T06:36:24.324Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "lsPXCbLZLBi3Om2o",
+        "project_id": "3LNdTzVIyBBQU2wb",
+        "sub_project_id": "WZhYsw2i_yXeGK34",
+        "title": "기존 리포지토리 구조 및 코드 분석",
+        "description": "현재 리포지토리의 전체 구조와 코드를 분석하여 현황 파악",
+        "status": "done",
+        "priority": "high",
+        "is_today": 0,
+        "sort_order": 0,
+        "created_at": "2026-04-03T05:46:40.595Z",
+        "updated_at": "2026-04-03T08:45:54.483Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "b-vH1C2cKTgzElrD",
+        "project_id": "3LNdTzVIyBBQU2wb",
+        "sub_project_id": "WZhYsw2i_yXeGK34",
+        "title": "테스트 모듈 방향 결정",
+        "description": "테스트 모듈을 어떻게 만들어야 할지 방향성 검토 및 결정",
+        "status": "done",
+        "priority": "high",
+        "is_today": 0,
+        "sort_order": 1,
+        "created_at": "2026-04-03T05:46:40.602Z",
+        "updated_at": "2026-04-03T08:47:53.641Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "ZsqdZKFIvfxKs_K2",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "XETxSbqQAPpR6USn",
+        "title": "관련 ppt 만들기",
+        "description": "",
+        "status": "done",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 0,
+        "created_at": "2026-04-03T07:34:31.088Z",
+        "updated_at": "2026-04-03T08:35:20.554Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "fHLP3OOwkjQgsBc2",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "xAcC0WmbHbfTl466",
+        "title": "이비즈포유 크롤링 추가",
+        "description": "",
+        "status": "idea",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 3,
+        "created_at": "2026-04-03T08:39:53.447Z",
+        "updated_at": "2026-04-03T08:40:34.080Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "FWD9gqTJcFgFBY3q",
+        "project_id": "CtnXwGPFJMO8jpuF",
+        "sub_project_id": "xAcC0WmbHbfTl466",
+        "title": "외부 클러스터로 옮기고 한번더 테스트해볼 것",
+        "description": "",
+        "status": "idea",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 4,
+        "created_at": "2026-04-03T08:40:02.061Z",
+        "updated_at": "2026-04-03T08:40:02.061Z",
+        "is_archived": 0,
+        "tags": "[]"
+      },
+      {
+        "id": "U-z97Xu9zDgmFlNt",
+        "project_id": "3LNdTzVIyBBQU2wb",
+        "sub_project_id": "hIHf2Q5ABvhXzL8W",
+        "title": "페도라에 세팅해보기",
+        "description": "",
+        "status": "idea",
+        "priority": "medium",
+        "is_today": 0,
+        "sort_order": 0,
+        "created_at": "2026-04-03T08:48:17.869Z",
+        "updated_at": "2026-04-03T08:48:17.869Z",
         "is_archived": 0,
         "tags": "[]"
       }
@@ -934,6 +1199,14 @@
         "prompt_type": "manual",
         "created_at": "2026-03-26T02:08:26.825Z",
         "updated_at": "2026-03-26T02:09:18.421Z"
+      },
+      {
+        "id": "s6DLOInlPp7_1ZGw",
+        "task_id": "0yct2HVJZ1xCZvWH",
+        "content": "코드 분석이 완료됐습니다. 구체적인 구현 방향을 정리해드릴게요.\n\n---\n\n## 구현 방향 분석\n\n### 현재 상태 파악\n\n```\nKSystem → jabis  : POST /legacy/goFormLink.do (구현 완료)\njabis  → KSystem : ❌ 없음 (구현 필요)\n```\n\n**저장되는 ERP 데이터** (`erpVoucherService.ts`에서 파싱):\n- `tblKey` — KSystem 전표 식별자 (콜백에 필수)\n- `companySeq`, `docId`, `empNo`\n\n→ 그런데 **현재 이 데이터가 DB에 저장되지 않음**이 문제\n\n---\n\n### 구현 컴포넌트 (3개)\n\n#### 1. ERP 메타데이터 저장 (`approval.documents`)\n\n`/legacy/goFormLink.do` 진입 시 전자결재 문서에 ERP 정보를 연결해야 함:\n\n```sql\n-- 마이그레이션\nALTER TABLE approval.documents \n  ADD COLUMN erp_tbl_key TEXT,\n  ADD COLUMN erp_company_seq TEXT,\n  ADD COLUMN erp_doc_id TEXT;\n```\n\n저장 위치: `approvalRepository.ts`의 문서 생성/연결 로직\n\n#### 2. KSystem 콜백 서비스 (`erpCallbackService.ts`)\n\n```typescript\n// jabis-api-gateway/src/services/erpCallbackService.ts\n\nexport async function notifyRejectionToKSystem(tblKey: string, companySeq: string): Promise<void> {\n  // 1. 반려 payload 구성\n  // 2. AES-256-CBC 암호화 (현재 복호화만 구현됨, 암호화 추가 필요)\n  // 3. KSystem API 호출 (POST to 192.168.32.39)\n  // 4. 응답 로깅\n}\n```\n\n→ **단, KSystem 콜백 API 스펙이 아직 없음** (브레인스토밍에서 \"영림원에서 콜백 API 문서를 줘야 함\" 명시)\n\n#### 3. 반려 흐름에 콜백 연결 (`approvalRepository.ts`)\n\n```typescript\n// rejectProcessing() 종료 후 KSystem 통지 추가\nasync rejectProcessing(documentId, deptId, userId, comment?) {\n  // ... 기존 반려 로직 ...\n  \n  // ERP 연동 문서인 경우 KSystem에 통지\n  const doc = await this.getDocumentById(documentId);\n  if (doc.erp_tbl_key) {\n    await notifyRejectionToKSystem(doc.erp_tbl_key, doc.erp_company_seq);\n    // 실패해도 반려 자체는 성공 처리 (fire-and-forget 또는 재시도)\n  }\n}\n```\n\n---\n\n### 흐름도\n\n```\n처리부서장 반려 클릭\n    │\n    ▼\nPOST /api/approval/documents/:id/processing { action: 'reject' }\n    │\n    ▼\nrejectProcessing() 실행\n    ├── approval.documents.status = 'rejected'\n    ├── approval.processing_history.status = 'rejected'\n    │\n    └── erp_tbl_key 있으면 → KSystem 콜백 API 호출\n                              ├── KSystem 상태 → \"수정 가능\"\n                              └── 버튼 → \"취소\" 활성화\n```\n\n---\n\n### 선결 과제 (블로커)\n\n| 항목 | 상태 | 설명 |\n|------|------|------|\n| KSystem 콜백 API 문서 | ❌ 대기 중 | 영림원에서 제공 예정 |\n| ERP tblKey → 문서 연결 로직 | 구현 가능 | goFormLink.do 처리 시 저장 |\n| AES-256-CBC 암호화 | 구현 가능 | 복호화는 있으므로 역방향 구현 |\n\n---\n\n### 작업 순서 제안\n\n1. **지금 할 수 있는 것**: `approval.documents`에 ERP 메타 컬럼 추가 + `goFormLink.do`에서 저장 로직 구현\n2. **KSystem API 문서 받은 후**: `erpCallbackService.ts` 구현 + `rejectProcessing`에 연결\n\nKSystem API 문서를 받기 전에 DB 마이그레이션과 ERP 데이터 저장 부분은 먼저 작업해두면 되겠습니다. 진행할까요?",
+        "prompt_type": "manual",
+        "created_at": "2026-04-01T09:16:52.951Z",
+        "updated_at": "2026-04-01T09:16:52.951Z"
       }
     ],
     "task_conversations": [
@@ -2266,6 +2539,125 @@
         "role": "assistant",
         "content": "Execution error",
         "created_at": "2026-03-27T05:23:26.861Z"
+      },
+      {
+        "id": "GywN1x3m8OlE0kif",
+        "task_id": "WwGH9UjAa_bS80cL",
+        "role": "user",
+        "content": "이거에 대해서 얘기해보자",
+        "created_at": "2026-04-03T00:48:34.577Z"
+      },
+      {
+        "id": "_fxQ2J4WineYY_O0",
+        "task_id": "WwGH9UjAa_bS80cL",
+        "role": "assistant",
+        "content": "현재 브레인스토밍 내용을 보면 여러 작업이 있는데, Task 상태가 \"done\"인 **jabis-api-gateway 업데이트**와 관련해서, 그리고 나머지 TODO 항목들에 대해 정리해보겠습니다.\n\n---\n\n### 현재 항목 정리\n\n**1. jabis-monitoring 수정** (우선순위 높음)\n- 새로고침 시 Error 전환 방지 → 자동 업데이트 시스템 설계 필요\n- API TEST Failed 과다 → 근본 원인 해결 필요\n\n**2. UNN 크롤링 (영업 기능)**\n- 나라장터(g2b.go.kr), 이비즈포유(ebiz4u.co.kr) 크롤링\n- 웹 기반 가능 여부 확인 → 스케줄링 크론 가능\n\n**3. OSS 작업**\n- 개발자 권한 부여\n- main 브랜치 문제 먼저 해결 → 그 후 OSS 가져오기\n\n**4. 자비스 외부망 클러스터 이전**\n- ArgoCD(10.2.4.14), Rancher(10.1.4.120) 환경\n- jabis-maker 세팅 + 전체 Pod 이전 + DNS 등록\n- Claude 외부망 Pod 동작 확인\n\n**5. jabis-maker 개선**\n- 전체 채팅 복사 기능\n- 세션 타이틀 자동 생성 (채팅 기반)\n- 페이지 타이틀 연동 (자메::작업명)\n\n**6. jabis-hr 전자결재 ↔ 영림원**\n- 영림원 콜백 API 문서 대기 중 (블로커)\n\n---\n\n어떤 항목부터 논의하고 싶으신가요? 아니면 전체적인 우선순위를 잡아볼까요?",
+        "created_at": "2026-04-03T00:48:47.050Z"
+      },
+      {
+        "id": "Hs407S50UxUzUFA9",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "user",
+        "content": "오케이 그럼 리포지토리 분석을 어떻게 시키라고 하면 좋을까",
+        "created_at": "2026-04-03T05:49:10.430Z"
+      },
+      {
+        "id": "PknHFMFDHLMlcqK0",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "user",
+        "content": "오케이 그럼 리포지토리 분석을 어떻게 시키라고 하면 좋을까",
+        "created_at": "2026-04-03T05:51:56.407Z"
+      },
+      {
+        "id": "NrRBt36RD1XIF-vW",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "assistant",
+        "content": "## TestModule 리포지토리 분석 결과\n\n3개의 하위 프로젝트가 존재합니다:\n\n---\n\n### 1. `ai-e2e-tester` — AI E2E 테스트 자동화 플랫폼\n\n| 항목 | 내용 |\n|------|------|\n| **구조** | pnpm 모노레포 (Turbo) |\n| **백엔드** | Fastify 5 + Playwright + SQLite (Drizzle ORM) |\n| **프론트엔드** | React 18 + Zustand + Tailwind + Vite |\n| **AI** | **Claude Code SDK** (`@anthropic-ai/claude-code`) |\n| **핵심** | MCP 프로토콜로 23개 브라우저 도구 제공, AI가 실시간으로 Playwright 제어 |\n| **포트** | 4820 (서버), 5173 (웹 개발) |\n\n**특징**: 웹 UI에서 자연어 또는 구조화된 테스트 요청 → AI가 브라우저 자동 조작 → 실시간 WebSocket 모니터링 → 결과 판정(PASS/WARNING/FAIL)\n\n---\n\n### 2. `ai-tester` — YAML 시나리오 기반 CLI 테스트 프레임워크\n\n| 항목 | 내용 |\n|------|------|\n| **구조** | 단일 프로젝트 (pnpm) |\n| **실행** | CLI (Commander) |\n| **AI** | **Gemini 2.0 Flash / Groq Llama** (멀티프로바이더, 키 로테이션) |\n| **브라우저** | Playwright + Chromium |\n| **DB** | MSSQL (읽기 전용, 테스트 데이터 조회) |\n| **리포트** | HTML (스크린샷 인라인) + JSON |\n\n**특징**: YAML로 시나리오 정의 → AI가 화면 분석/폼 자동 채우기 → Canvas/OZ Report 비전 검증 → 실패 원인 자동 분류 (사이트버그/데이터/인프라)\n\n---\n\n### 3. `ai-tester-analyzer` — WebSocket 분석 서버\n\n| 항목 | 내용 |\n|------|------|\n| **구조** | 단일 프로젝트 (npm) |\n| **서버** | ws (WebSocket) |\n| **AI** | **Claude Code CLI** (로컬 구독, Haiku 모델) |\n| **포트** | 9700 |\n\n**특징**: Playwright 테스트 중 스크린샷+컨텍스트를 WebSocket으로 전송 → Claude가 에러 원인 분석 → 3가지 모드 (UI 스크린샷 / UI+로그 / E2E 실패)\n\n---\n\n### 세 프로젝트의 관계도\n\n```\nai-tester (CLI, YAML 시나리오)\n    │\n    ├─ 테스트 실행 중 분석 요청 ──→ ai-tester-analyzer (WebSocket 분석)\n    │                                    │\n    │                              Claude CLI로 스크린샷 분석\n    │\nai-e2e-tester (웹 UI, Claude Code SDK)\n    │\n    └─ 독립적인 웹 기반 E2E 테스트 플랫폼\n```\n\n### 핵심 차이점 정리\n\n| | ai-e2e-tester | ai-tester | ai-tester-analyzer |\n|---|---|---|---|\n| **인터페이스** | 웹 UI | CLI | WebSocket API |\n| **AI 엔진** | Claude Code SDK | Gemini/Groq | Claude CLI |\n| **시나리오 정의** | 자연어/구조화 폼 | YAML 파일 | N/A (분석 전용) |\n| **대상** | 범용 웹 테스트 | 대학 원서접수 특화 | 보조 분석 서버 |\n| **상태** | 완성도 높음 | Stage 1 완료 | 초기 버전 |\n\n---\n\n다음 단계로 **테스트 모듈을 어떻게 만들지 방향 결정**을 위해, 구체적으로 어떤 부분을 수정/통합하고 싶은지 알려주시면 계획을 세워드리겠습니다. 예를 들어:\n\n1. **ai-tester를 ai-e2e-tester에 통합** (YAML 시나리오 + 웹 UI)\n2. **ai-tester-analyzer를 ai-e2e-tester의 내장 기능으로 흡수**\n3. **완전히 새로운 통합 모듈** 설계\n4. **기존 프로젝트 중 하나를 기반으로 확장**\n\n어떤 방향으로 가고 싶으신가요?",
+        "created_at": "2026-04-03T05:54:14.440Z"
+      },
+      {
+        "id": "6cQdAf1Bg4-U6hn-",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "user",
+        "content": "그러면 결국 내가 만들려고 하는건 원서접수 테스트 모듈을 만들려고 하는데 \n어떤 방향으로 만들 수 있을까?",
+        "created_at": "2026-04-03T06:23:34.827Z"
+      },
+      {
+        "id": "JSeGUwvyJ0gW0X4Q",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "assistant",
+        "content": "## 원서접수 테스트 모듈 — 가능한 방향\n\n### 방향 1: `ai-tester` 확장 (가장 빠름)\n> 이미 원서접수 특화되어 있음\n\n- YAML 시나리오에 원서접수 플로우 추가\n- Gemini/Groq로 화면 분석 + 폼 자동 채우기 이미 구현됨\n- **단점**: CLI 전용, 웹 UI 없음, 비개발자 사용 어려움\n\n### 방향 2: `ai-e2e-tester` 기반 원서접수 특화 (추천)\n> 웹 UI + Claude Code SDK의 강력한 브라우저 제어\n\n- 웹 UI에서 원서접수 테스트 시나리오 등록/실행/모니터링\n- Claude가 실시간으로 원서접수 폼 자동 조작\n- `ai-tester`의 YAML 시나리오 로직을 가져와서 내장\n- **장점**: 누구나 웹에서 테스트 실행 가능, 실시간 모니터링\n\n### 방향 3: 새로운 경량 모듈 (심플)\n> 원서접수만 집중, 불필요한 기능 제거\n\n- 원서접수 전용 테스트 시나리오 엔진\n- 입력: 대학명 + 전형 → 자동으로 원서접수 E2E 테스트\n- AI 없이 Playwright 스크립트 기반 (빠르고 안정적)\n- **장점**: 가볍고 빠름 / **단점**: AI 유연성 없음\n\n### 방향 4: 하이브리드 (ai-e2e-tester + ai-tester 통합)\n> 최종 목표에 가장 가까움\n\n```\n[웹 UI] ──→ [테스트 엔진]\n               │\n               ├─ 모드 1: AI 자율 테스트 (Claude Code SDK)\n               │          자연어로 \"○○대학 수시 원서접수 테스트해줘\"\n               │\n               ├─ 모드 2: 시나리오 테스트 (YAML 기반)\n               │          미리 정의된 원서접수 플로우 반복 실행\n               │\n               └─ 모드 3: 회귀 테스트 (스크립트 기반)\n                          변경 후 기존 기능 정상 확인\n```\n\n---\n\n### 제 추천: **방향 2** (ai-e2e-tester 기반)\n\n**이유**:\n1. 웹 UI가 이미 있어서 내부 모듈에서 바로 사용 가능\n2. Claude Code SDK가 원서접수 같은 복잡한 폼 처리에 강함\n3. `ai-tester`의 원서접수 노하우(시나리오, 데이터 조회)를 가져오면 됨\n4. `10.1.1.80` 서버에 배포하면 팀 전체가 사용 가능\n\n---\n\n어떤 방향이 마음에 드시나요? 결정하시면 구체적인 구현 계획을 세워드리겠습니다.",
+        "created_at": "2026-04-03T06:23:59.522Z"
+      },
+      {
+        "id": "SuD0_rl5UMRnRozy",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "user",
+        "content": "사실 ai-e2e-tester 는 범용적으로 사용할 수 있게 만든거야 \n그거 잘 보면 api 형태로 테스트도 할 수 있어 확인해봐",
+        "created_at": "2026-04-03T06:25:15.543Z"
+      },
+      {
+        "id": "Rjjn6sivMNpaNfzh",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "user",
+        "content": "사실 ai-e2e-tester 는 범용적으로 사용할 수 있게 만든거야 \n그거 잘 보면 api 형태로 테스트도 할 수 있어 확인해봐",
+        "created_at": "2026-04-03T06:26:42.705Z"
+      },
+      {
+        "id": "JdRgli06ESzq36tB",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "assistant",
+        "content": "맞습니다. `ai-e2e-tester`는 이미 **범용 테스트 플랫폼**으로 잘 만들어져 있네요.\n\n## ai-e2e-tester API 테스트 기능 정리\n\n### REST API로 테스트 실행 가능\n```\nPOST /api/tests     — 테스트 생성/실행\nGET  /api/tests     — 목록 조회 (페이지네이션, 필터)\nGET  /api/tests/:id — 상세 조회\nDELETE /api/tests/:id — 취소/삭제\n```\n\n### 두 가지 모드\n| 모드 | 설명 |\n|------|------|\n| **자연어 프롬프트** | `\"○○대학 원서접수 페이지에서 로그인 테스트해줘\"` |\n| **구조화된 테스트** | actions + assertions 명시적 정의 |\n\n### 구조화된 테스트 예시\n```json\n{\n  \"targetUrl\": \"https://example.com\",\n  \"scenario\": \"로그인 테스트\",\n  \"actions\": [\n    { \"type\": \"click\", \"target\": \"로그인 버튼\" },\n    { \"type\": \"input\", \"target\": \"이메일\", \"value\": \"test@test.com\" }\n  ],\n  \"assertions\": [\n    { \"id\": \"A1\", \"check\": \"대시보드 표시 확인\", \"severity\": \"critical\" }\n  ]\n}\n```\n\n### + WebSocket 실시간 모니터링\n테스트 진행 중 AI 추론, 스크린샷, 도구 호출 등을 실시간 스트리밍\n\n---\n\n## 그러면 방향이 바뀌는데요\n\n`ai-e2e-tester`가 이미 범용 플랫폼이라면, **원서접수 테스트 모듈**은:\n\n1. **ai-e2e-tester를 그대로 인프라로 사용**\n2. **원서접수 전용 시나리오/템플릿만 만들면 됨**\n\n즉, 플랫폼을 새로 만들 필요 없이 **원서접수 테스트 시나리오 세트**를 만들어서 API로 호출하는 구조가 되겠네요.\n\n이 방향으로 갈 건지, 아니면 `ai-e2e-tester` 자체를 수정해야 하는 부분이 있는지 알려주세요.",
+        "created_at": "2026-04-03T06:27:04.420Z"
+      },
+      {
+        "id": "CNVwRh20DbZpCZ6g",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "assistant",
+        "content": "## ai-e2e-tester API 테스트 기능 정리\n\n맞습니다. `ai-e2e-tester`는 **완전한 REST API + WebSocket** 인터페이스를 갖춘 범용 테스트 플랫폼이네요.\n\n### 외부에서 API로 테스트 실행 가능\n\n**REST API 엔드포인트**:\n| 메서드 | 경로 | 기능 |\n|--------|------|------|\n| POST | `/api/tests` | 테스트 제출 (자연어 or 구조화) |\n| GET | `/api/tests` | 테스트 목록 조회 (페이징/필터) |\n| GET | `/api/tests/:id` | 테스트 결과 상세 조회 |\n| DELETE | `/api/tests/:id` | 테스트 취소/삭제 |\n\n**WebSocket**: 실시간 테스트 진행 모니터링 (`test:start`, `test:start:structured`, 스크린샷 스트리밍 등)\n\n### 두 가지 테스트 모드\n\n**1. 자연어 모드** — 프롬프트만 보내면 AI가 알아서\n```json\n{ \"prompt\": \"○○대학 수시 원서접수 테스트해줘\" }\n```\n\n**2. 구조화 모드** — 시나리오 + 액션 + 검증조건 명시\n```json\n{\n  \"targetUrl\": \"https://...\",\n  \"scenario\": \"원서접수 테스트\",\n  \"setup\": \"로그인 먼저 수행\",\n  \"actions\": [{\"type\": \"navigate\"}, {\"type\": \"click\"}, ...],\n  \"assertions\": [{\"id\": \"a1\", \"check\": \"원서접수 버튼 존재\", \"severity\": \"critical\"}],\n  \"options\": { \"headless\": true, \"timeout\": 60000, \"reuseAuth\": true }\n}\n```\n\n### 23개 브라우저 도구 + 네트워크/콘솔 모니터링\n\n브라우저 조작뿐 아니라 **`network_requests`**(API 호출 감시), **`console_messages`**(JS 에러 감지) 도구도 있어서, **API 응답 검증**도 가능합니다.\n\n---\n\n### 결론: ai-e2e-tester가 이미 플랫폼\n\n```\nai-e2e-tester (범용 테스트 플랫폼)\n    │\n    ├─ 웹 UI로 직접 사용\n    ├─ REST API로 외부 시스템에서 호출\n    └─ WebSocket으로 실시간 모니터링\n```\n\n그러면 **원서접수 테스트 모듈**은 `ai-e2e-tester`를 **플랫폼으로 두고**, 그 위에 원서접수 전용 시나리오/설정을 얹는 방식이 되겠네요. 예를 들어:\n\n1. **원서접수 시나리오 템플릿** — 구조화 모드용 JSON 시나리오 모음\n2. **원서접수 전용 클라이언트** — ai-e2e-tester API를 호출하는 전용 모듈\n3. **ai-e2e-tester 자체에 원서접수 프리셋 기능 추가**\n\n어떤 형태로 만들고 싶으신가요?",
+        "created_at": "2026-04-03T06:28:09.495Z"
+      },
+      {
+        "id": "Lqyq4o9AItQTuwcA",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "user",
+        "content": "일단 ai-e2e-tester 의 url 을 확정시켜야할거 같아 지금은 ngrok 에 올리고 있는데",
+        "created_at": "2026-04-03T07:12:28.341Z"
+      },
+      {
+        "id": "mOdEh_44EBerw8xk",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "assistant",
+        "content": "## 현재 상태 정리\n\n| 항목 | 현재 |\n|------|------|\n| **서버** | PM2로 실행 (포트 4820) |\n| **외부 접근** | ngrok (`jabis-tester.ngrok.app`) |\n| **Docker** | 없음 |\n| **K8S/Helm** | 없음 |\n\n## URL 확정 방안\n\n### 옵션 1: `10.1.1.80`에 직접 배포 (가장 간단)\n```\nhttp://10.1.1.80:4820\n```\n- 사내망에서 바로 접근 가능\n- ngrok 불필요\n- PM2로 프로세스 관리 (이미 설정됨)\n\n### 옵션 2: 도메인 + 리버스 프록시\n```\nhttps://ai-tester.jinhakapply.com\n```\n- nginx 리버스 프록시 → `localhost:4820`\n- SSL 적용 가능\n- K8S Ingress 활용 가능\n\n### 옵션 3: Docker + Helm 배포 (기존 인프라 활용)\n```\nhttps://ai-e2e-tester.jinhakapply.com\n```\n- 기존 JABIS처럼 ArgoCD로 관리\n- Harbor에 이미지 올리고 Helm으로 배포\n\n---\n\n**참고**: `10.1.1.80`이 사내망 전용이면 **옵션 1**로 충분하고, 외부 접근이 필요하면 **옵션 2 or 3**이 필요합니다.\n\n`10.1.1.80`에 어떤 환경이 세팅되어 있나요? (Docker? K8S? 그냥 리눅스?)",
+        "created_at": "2026-04-03T07:13:45.277Z"
+      },
+      {
+        "id": "BGbqd7M5qtkUDhrw",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "user",
+        "content": "10.1.1.80 근데 이게 외부망인데 \nlinux야 linux에서 ai-e2e-tester는 뭔가 상성이 안좋은거 같은데 너 생각에 ㄴ어 때",
+        "created_at": "2026-04-03T07:15:53.388Z"
+      },
+      {
+        "id": "Qa6-OrV_nq5LwR9C",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "assistant",
+        "content": "## ai-e2e-tester + Linux 호환성 분석\n\n### 주요 문제점\n\n| 문제 | 심각도 | 설명 |\n|------|--------|------|\n| **Playwright 브라우저** | 🔴 높음 | Chromium/Firefox/WebKit 설치 + 시스템 라이브러리 필요 |\n| **better-sqlite3** | 🟡 중간 | 네이티브 모듈, Linux에서 빌드 도구 필요 (`build-essential`, `python3`) |\n| **Claude Code SDK** | 🟢 낮음 | 내부적으로 Node 프로세스 spawn, 플랫폼 독립적 |\n| **파일 경로/서버** | 🟢 낮음 | 크로스플랫폼 정상 |\n\n### 핵심은 Playwright\n\nLinux 서버에서 Playwright 브라우저를 돌리려면:\n```bash\n# 시스템 라이브러리 설치\nsudo apt-get install build-essential python3 libsqlite3-dev\n# Playwright 브라우저 + 의존성 설치\nnpx playwright install --with-deps chromium\n```\n\n**상성이 안 좋다기보다는**, 세팅만 잘하면 돌아갑니다. 다만 귀찮은 건 사실입니다.\n\n---\n\n### 선택지\n\n**A. 그냥 Linux에 직접 배포** (가능하긴 함)\n- 시스템 패키지 설치 + Playwright 브라우저 설치\n- `10.1.1.80:4820`으로 바로 접근\n- 관리 포인트: OS 업데이트 시 라이브러리 깨질 수 있음\n\n**B. Docker로 배포** (추천)\n- Playwright 공식 Docker 이미지 기반으로 Dockerfile 작성\n- 환경 격리, 재현 가능\n- `10.1.1.80`에 Docker만 설치되어 있으면 됨\n\n**C. 10.1.1.80에서는 API 서버만, 브라우저는 다른 곳에서**\n- 테스트 엔진만 분리해서 Mac/Windows에서 실행\n- 아키텍처가 복잡해짐\n\n---\n\n`10.1.1.80`에 Docker 설치되어 있나요? Docker가 있으면 **B**가 가장 깔끔합니다.",
+        "created_at": "2026-04-03T07:17:03.951Z"
+      },
+      {
+        "id": "_8J1ZaXmN24lEzRd",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "user",
+        "content": "근데 linux 에서 chromium 기반의 돌리는게 가능할까",
+        "created_at": "2026-04-03T07:17:52.520Z"
+      },
+      {
+        "id": "VvQnHtBijPKpC51A",
+        "task_id": "lsPXCbLZLBi3Om2o",
+        "role": "assistant",
+        "content": "## Linux에서 Chromium — 가능합니다\n\n**headless 모드**로 돌리면 전혀 문제 없습니다. 실제로 대부분의 E2E 테스트가 Linux + headless Chromium 조합입니다.\n\n| 환경 | 가능 여부 | 비고 |\n|------|-----------|------|\n| Linux + headless Chromium | ✅ 정상 | CI/CD 표준 구성 |\n| Linux + headed (GUI) | ⚠️ | Xvfb 필요, 불필요함 |\n| Docker + headless | ✅ 가장 안정 | Playwright 공식 이미지 지원 |\n\n### 실제로 이렇게 쓰는 곳\n\n- GitHub Actions, Jenkins, GitLab CI → 전부 Linux + headless Chromium\n- Playwright 공식 Docker 이미지 자체가 Linux 기반\n\n### ai-e2e-tester에서 확인\n\n현재 코드에도 headless 옵션이 이미 있습니다:\n\n```typescript\n// 구조화된 테스트 옵션\noptions: { headless: true, timeout: 60000 }\n```\n\n### 필요한 것\n\n```bash\n# Ubuntu/Debian 기준\nsudo apt-get update\nsudo apt-get install -y nodejs npm\nnpx playwright install --with-deps chromium\n```\n\n이게 끝입니다. Docker로 감싸면 더 깔끔하고요.\n\n**결론**: Linux + headless Chromium은 업계 표준이라 걱정 안 하셔도 됩니다. 배포 방식(직접 설치 vs Docker)만 정하면 됩니다.",
+        "created_at": "2026-04-03T07:18:07.249Z"
       }
     ]
   }
